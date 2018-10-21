@@ -2329,6 +2329,9 @@ static void dwc3_ext_event_notify(struct dwc3_msm *mdwc)
 	if (mdwc->init)
 		flush_delayed_work(&mdwc->sm_work);
 
+#ifdef CONFIG_MACH_COMMA
+	clear_bit(ID, &mdwc->inputs);
+#else
 	if (mdwc->id_state == DWC3_ID_FLOAT) {
 		dbg_event(0xFF, "ID set", 0);
 		set_bit(ID, &mdwc->inputs);
@@ -2336,6 +2339,7 @@ static void dwc3_ext_event_notify(struct dwc3_msm *mdwc)
 		dbg_event(0xFF, "ID clear", 0);
 		clear_bit(ID, &mdwc->inputs);
 	}
+#endif
 
 	if (mdwc->vbus_active && !mdwc->in_restart) {
 		dbg_event(0xFF, "BSV set", 0);
