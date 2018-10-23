@@ -2090,6 +2090,12 @@ static int mdss_fb_blank(int blank_mode, struct fb_info *info)
 		return ret;
 	}
 	mutex_lock(&mfd->mdss_sysfs_lock);
+
+#ifdef CONFIG_MACH_COMMA
+	if (blank_mode != FB_BLANK_UNBLANK)
+		blank_mode = BLANK_FLAG_LP;
+#endif
+
 	if (mfd->op_enable == 0) {
 		if (blank_mode == FB_BLANK_UNBLANK)
 			mfd->suspend.panel_power_state = MDSS_PANEL_POWER_ON;
