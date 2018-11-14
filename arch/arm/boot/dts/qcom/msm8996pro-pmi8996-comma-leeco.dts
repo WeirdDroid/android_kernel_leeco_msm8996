@@ -41,6 +41,34 @@
 	size = <0 0x10000000>;
 };
 
+&mdss_dsi0 {
+	/delete-property/ qcom,platform-bklight-en-gpio;
+};
+
+ &mdss_dsi1 {
+	status = "disabled";
+};
+
+ &mdss_fb1 {
+	status = "disabled";
+};
+
+ &mdss_fb2 {
+	status = "disabled";
+};
+
+ &mdss_fb3 {
+	status = "disabled";
+};
+
+&pcie1 {
+	status = "disabled";
+};
+
+ &pcie2 {
+	status = "disabled";
+};
+
 &tlmm {
 	/delete-node/ cam_sensor_front_active;
 	/delete-node/ cam_sensor_front_suspend;
@@ -138,7 +166,6 @@
 				pins = "gpio125";
 				bias-pull-up;
 				drive-strength = <16>;
-				input-low;
 			};
 		};
 
@@ -151,9 +178,7 @@
 			config {
 				pins = "gpio125";
 				bias-disable;
-				bias-pull-down;
 				drive-strength = <2>;
-				input-high;
 			};
 		};
 	};
@@ -182,7 +207,6 @@
 			config {
 				pins = "gpio89";
 				bias-disable;
-				bias-pull-down;
 				drive-strength = <2>;
 				output-high;
 			};
@@ -444,6 +468,11 @@
 	qcom,init-voltage = <1200000>;
 };
 
+&mdss_dsi0 {
+	qcom,platform-te-gpio = <&tlmm 97 0>;
+	qcom,platform-reset-gpio = <&tlmm 24 0>;
+};
+
 &mtp_batterydata {
 	qcom,letv_zl1_lishen_4000mah {
 		qcom,battery-type = "letv_zl1_lishen";
@@ -534,10 +563,15 @@
 			 00 00 00 0C
 		];
 	};
-
 };
 
 &soc {
+	/delete-node/ gen-vkeys;
+
+ 	gpio_keys {
+		/delete-node/ cam_focus;
+		/delete-node/ cam_snapshot;
+	};
 	i2c@75ba000 {
 		/delete-node/ synaptics@20;
 
@@ -595,10 +629,12 @@
 	};
 
 	sound-9335 {
-		/delete-property/ qcom,hph-en1-gpio;
 		/delete-property/ qcom,hph-en0-gpio;
-		/delete-property/ qcom,wsa-devs;
+		/delete-property/ qcom,hph-en1-gpio;
+		/delete-property/ qcom,us-euro-gpios;
 		/delete-property/ qcom,wsa-aux-dev-prefix;
+		/delete-property/ qcom,wsa-devs;
+		/delete-property/ qcom,wsa-max-devs;
 
 		qcom,audio-routing =
 			"AIF4 VI", "MCLK",
@@ -736,4 +772,8 @@
 
 &usb3 {
 	/delete-property/ vbus_dwc3-supply;
+};
+
+&usb_otg_switch {
+	status = "disabled";
 };
