@@ -565,6 +565,11 @@
 	};
 };
 
+&pmi8994_wled {
+	qcom,fs-curr-ua = <20000>;
+	qcom,led-strings-list = [00 01];
+};
+
 &soc {
 	/delete-node/ gen-vkeys;
 
