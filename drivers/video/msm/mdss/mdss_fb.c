@@ -1291,6 +1291,11 @@ static int mdss_fb_probe(struct platform_device *pdev)
 	mutex_init(&mfd->mdss_sysfs_lock);
 	mutex_init(&mfd->switch_lock);
 
+#ifdef CONFIG_MACH_COMMA
+	if (!strstr(saved_command_line, "androidboot.mode=recovery"))
+		mfd->is_comma_neos = true;
+#endif
+
 	fbi_list[fbi_list_index++] = fbi;
 
 	platform_set_drvdata(pdev, mfd);
@@ -2092,7 +2097,7 @@ static int mdss_fb_blank(int blank_mode, struct fb_info *info)
 	mutex_lock(&mfd->mdss_sysfs_lock);
 
 #ifdef CONFIG_MACH_COMMA
-	if (blank_mode != FB_BLANK_UNBLANK)
+	if (mfd->is_comma_neos && blank_mode != FB_BLANK_UNBLANK)
 		blank_mode = BLANK_FLAG_LP;
 #endif
 
