@@ -539,7 +539,6 @@ static void  ramoops_of_init(struct platform_device *pdev)
 #else
 static inline void ramoops_of_init(struct platform_device *pdev)
 {
-	return;
 }
 #endif
 

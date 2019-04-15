@@ -1,5 +1,0 @@
-#
-# letv custom device configuration
-#
-
-source "drivers/letv/vibrator/Kconfig"

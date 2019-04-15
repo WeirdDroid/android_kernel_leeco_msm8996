@@ -8329,7 +8329,7 @@ struct afe_spkr_prot_calib_get_resp {
 	struct asm_calib_res_cfg res_cfg;
 } __packed;
 
-#ifdef CONFIG_SND_SOC_MAX98927
+#ifdef CONFIG_MACH_COMMA
 #define AFE_RX_TOPOLOGY_ID_DSM                              0x10001060
 #define AFE_MODULE_DSM_TX                                   0x10001061
 #define AFE_MODULE_DSM_RX                                   0x10001062
@@ -8954,7 +8954,7 @@ struct afe_clk_set {
 	 * for enable and disable clock.
 	 *	"clk_freq_in_hz", "clk_attri", and "clk_root"
 	 *	are ignored in disable clock case.
-	 *	@values
+	 *	@values 
 	 *	- 0 -- Disabled
 	 *	- 1 -- Enabled  @tablebulletend
 	 */
