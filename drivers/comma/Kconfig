@@ -1,2 +1,0 @@
-config MACH_COMMA
-        bool "Enable Support for Comma boards"

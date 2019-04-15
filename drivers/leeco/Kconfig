@@ -1,0 +1,2 @@
+config MACH_LEECO
+        bool "Enable Support for Leeco boards"
