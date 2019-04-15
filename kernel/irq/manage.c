@@ -1266,7 +1266,7 @@ __setup_irq(unsigned int irq, struct irq_desc *desc, struct irqaction *new)
 	register_handler_proc(irq, new);
 	free_cpumask_var(mask);
 
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 	comma_balance_irq(irq);
 #endif
 

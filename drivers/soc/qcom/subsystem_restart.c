@@ -718,7 +718,7 @@ static int subsystem_powerup(struct subsys_device *dev, void *data)
 static int __find_subsys(struct device *dev, void *data)
 {
 	struct subsys_device *subsys = to_subsys(dev);
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 	return !!strstr(subsys->desc->name, data);
 #else
 	return !strcmp(subsys->desc->name, data);

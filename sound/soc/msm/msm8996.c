@@ -60,7 +60,7 @@
 #define WSA8810_NAME_1 "wsa881x.20170211"
 #define WSA8810_NAME_2 "wsa881x.20170212"
 
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 extern int max98927_get_i2c_states(void);
 #endif
 
@@ -91,7 +91,7 @@ static int msm_vi_feed_tx_ch = 2;
 static int msm_hdmi_rx_ch = 2;
 static int msm_proxy_rx_ch = 2;
 static int hdmi_rx_sample_rate = SAMPLING_RATE_48KHZ;
-#ifndef CONFIG_MACH_COMMA
+#ifndef CONFIG_VENDOR_LEECO
 static int msm_tert_mi2s_tx_ch = 2;
 #endif
 
@@ -139,7 +139,7 @@ static struct afe_clk_set mi2s_tx_clk = {
 	0,
 };
 
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 static int pri_mi2s_sample_rate = SAMPLING_RATE_48KHZ;
 static int sec_mi2s_sample_rate = SAMPLING_RATE_48KHZ;
 static int tert_mi2s_sample_rate = SAMPLING_RATE_48KHZ;
@@ -2658,7 +2658,7 @@ static const struct snd_kcontrol_new msm_snd_controls[] = {
 			msm8996_hifi_put),
 	SOC_ENUM_EXT("VI_FEED_TX Channels", msm_snd_enum[12],
 			msm_vi_feed_tx_ch_get, msm_vi_feed_tx_ch_put),
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 	SOC_ENUM_EXT("PRI_MI2S BitWidth", msm8996_mi2s_snd_enum[0],
 			pri_mi2s_bit_format_get, pri_mi2s_bit_format_put),
 	SOC_ENUM_EXT("SEC_MI2S BitWidth", msm8996_mi2s_snd_enum[0],
@@ -4021,7 +4021,7 @@ static struct snd_soc_dai_link msm8996_common_dai_links[] = {
 		.codec_name = "snd-soc-dummy",
 		.be_id = MSM_FRONTEND_DAI_VOICE2,
 	},
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 	{
 		.name = "Primary MI2S RX_Hostless",
 		.stream_name = "Primary MI2S_RX Hostless Playback",
@@ -4345,7 +4345,7 @@ static struct snd_soc_dai_link msm8996_common_be_dai_links[] = {
 		.ops = &msm8996_mi2s_be_ops,
 		.ignore_suspend = 1,
 	},
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 	{
 		.name = LPASS_BE_TERT_MI2S_RX,
 		.stream_name = "Tertiary MI2S Playback",
@@ -4595,7 +4595,7 @@ static struct snd_soc_dai_link msm8996_hdmi_dai_link[] = {
 	},
 };
 
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 static struct snd_soc_dai_link msm8996_max98927_dai_link[] = {
 	{
 		.name = LPASS_BE_TERT_MI2S_RX,
@@ -4879,7 +4879,7 @@ static struct snd_soc_card *populate_snd_card_dailinks(struct device *dev)
 		dev_dbg(dev, "%s(): No hdmi audio support\n", __func__);
 	}
 
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 	if (of_property_read_bool(dev->of_node, "letv,smartpa-audio-max98927")) {
 		int i;
 		pr_info( "%s(): max98927 smartpa audio support present\n",

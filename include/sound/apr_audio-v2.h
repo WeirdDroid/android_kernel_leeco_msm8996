@@ -8329,7 +8329,7 @@ struct afe_spkr_prot_calib_get_resp {
 	struct asm_calib_res_cfg res_cfg;
 } __packed;
 
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 #define AFE_RX_TOPOLOGY_ID_DSM                              0x10001060
 #define AFE_MODULE_DSM_TX                                   0x10001061
 #define AFE_MODULE_DSM_RX                                   0x10001062

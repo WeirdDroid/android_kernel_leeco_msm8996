@@ -330,7 +330,7 @@ module_param_named(
 	battery_type, fg_batt_type, charp, S_IRUSR | S_IWUSR
 );
 
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 static int fg_sram_update_period_ms = 1000;
 #else
 static int fg_sram_update_period_ms = 30000;

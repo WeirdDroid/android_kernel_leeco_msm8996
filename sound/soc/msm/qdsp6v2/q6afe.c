@@ -119,7 +119,7 @@ struct afe_ctl {
 	struct aanc_data aanc_info;
 	struct mutex afe_cmd_lock;
 	int set_custom_topology;
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 	uint8_t *dsm_payload;
 #endif
 };
@@ -258,7 +258,7 @@ static int32_t sp_make_afe_callback(uint32_t *payload, uint32_t payload_size)
 			atomic_set(&this_afe.state, -1);
 		}
 	}
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 	if (AFE_PARAM_ID_DSM_CFG == param_id) {
 		if (payload_size < sizeof(this_afe.calib_data)) {
 			pr_err("%s: Error: received size %d, calib_data size %zu\n",
@@ -5696,7 +5696,7 @@ fail_cmd:
 	return ret;
 }
 
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 int afe_dsm_setget_params(uint8_t *payload, int size, int dir)
 {
 	int ret = -EINVAL;

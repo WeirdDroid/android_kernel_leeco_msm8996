@@ -2329,7 +2329,7 @@ static void dwc3_ext_event_notify(struct dwc3_msm *mdwc)
 	if (mdwc->init)
 		flush_delayed_work(&mdwc->sm_work);
 
-#ifdef CONFIG_MACH_COMMA
+#ifdef CONFIG_VENDOR_LEECO
 	clear_bit(ID, &mdwc->inputs);
 #else
 	if (mdwc->id_state == DWC3_ID_FLOAT) {
